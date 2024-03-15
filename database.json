@@ -1,0 +1,16 @@
+{
+"places" : [
+        {"latitude" : 51.1400211937,
+        "longitude": 14.9932345201,
+        "information": "Position 1",
+        "min_distance": 50},
+        {"latitude" : 51.1432292392,
+        "longitude": 14.93616018676,
+        "information": "Position 2",
+        "min_distance": 50},
+        {"latitude" : 0,
+        "longitude": 0,
+        "information": "",
+        "min_distance": 50}
+    ]
+}
