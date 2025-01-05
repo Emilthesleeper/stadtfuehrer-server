@@ -1,0 +1,45 @@
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+# IntelliJ
+*.iml
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Android Profiling
+*.hprof
+
+# Audio Files
+static/dicker-turm.mp3
+static/dreifaltigkeitskirche.mp3
+static/fluesterbogen.mp3
+static/kaisertrutz.mp3
+static/napoleon-haus.mp3
+static/ochsenbastei.mp3
+static/peterskirche.mp3
+static/rathaus.mp3
+static/reichenbacher-turm.mp3
+static/stadtmauer.mp3
