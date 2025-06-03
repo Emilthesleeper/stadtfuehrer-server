@@ -208,10 +208,6 @@
             {"latitude" : 0,
             "longitude": 0,
             "information": "Template",
-            "min_distance": 50},
-            {"latitude" : 0,
-            "longitude": 0,
-            "information": "Template",
             "min_distance": 50}
         ]
 }

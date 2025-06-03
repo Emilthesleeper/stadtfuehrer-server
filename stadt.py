@@ -23,24 +23,28 @@ def get_sort_key(object):
 
 @app.route("/")
 def home():
-    print("home called by "+get_remote_address())
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("home called by " + client_ip)
     return render_template("home.html")
 
 @app.route("/documentation")
 def docs():
-    print("documentation called by "+get_remote_address())
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("documentation called by " + client_ip)
     return render_template("docs.html")
 
 @app.route("/datenschutz")
 def pp():
-    print("pp called by "+get_remote_address())
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("datenschutz called by " + client_ip)
     return render_template("privacy policy.html")
 
 @app.route("/api/reset")
 def reset_session():
-    print("reset_session called by "+get_remote_address())
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("reset_session called by " + client_ip)
     session["key"]=""
-    print(get_remote_address()+" 1")
+    print(client_ip+" 1")
     return {
             "status" : "1",
             "message" : "Success"
@@ -49,12 +53,13 @@ def reset_session():
 @app.route("/api/get_nearest_place/<latitude>/<longitude>")
 @limiter.limit("500/day")
 def api(latitude: str, longitude: str):
-    print("api called by "+get_remote_address())
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("api called by " + client_ip)
     try:
         latitude=float(latitude)
         longitude=float(longitude)
     except:
-        print(get_remote_address()+" 0")
+        print(client_ip + "0")
         return {
             "status" : "0",
             "message" : "Die App hat fehlerhafte Koordinaten gesendet."
@@ -85,23 +90,23 @@ def api(latitude: str, longitude: str):
             list=list+str(number)+";"
             session["key"]=list
             if new_places[0]["information"].startswith("file/"):
-                print(get_remote_address()+" 3")
+                print(client_ip+" 3")
                 return {
                     "status" : "3",
                     "message" : new_places[0]["information"][5:]+".mp3"
                 }
-            print(get_remote_address()+" 1")
+            print(client_ip+" 1")
             return {
                 "status" : "1",
                 "message" : new_places[0]["information"]
             }
         else:
-            print(get_remote_address()+" 2")
+            print(client_ip+" 2")
             return {
                 "status" : "2",
                 "message" : "Warst schon hier."
             }
-    print(get_remote_address()+" 2")
+    print(client_ip+" 2")
     return {
         "status" : "2",
         "message" : "Zu weit von markierten Stellen entfernt."
@@ -109,8 +114,9 @@ def api(latitude: str, longitude: str):
 
 @app.errorhandler(429)
 def too_many_request_errorhandler(e):
-    print("too_many_request_errorhandler called by "+get_remote_address())
-    print(get_remote_address()+" 0")
+    client_ip = flask.request.headers.get('X-Forwarded-For', get_remote_address())
+    print("too_many_request_errorhandler called by " + client_ip)
+    print(client_ip + "0")
     return {
         "status" : "0",
         "message" : "Sie haben ihr tägliches Kontingent von 500 Anfragen am Tag verbraucht."
